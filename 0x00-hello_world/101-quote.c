@@ -12,7 +12,6 @@ int main(void)
 	char msg[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19";
 
 	arrSize = sizeof(msg) / sizeof(msg[1]);
-	write(1, msg, arrSize);
-	write(2, "\n", 0);
+	write(2, msg, arrSize);
 	return (1);
 }

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 
 /**
  * main - Entry point
@@ -7,9 +8,10 @@
  */
 int main(void)
 {
-	int i, arrSize;
+	int arrSize;
 	char msg[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
 
 	arrSize = sizeof(msg) / sizeof(msg[1]);
 	write(1, msg, arrSize);
+	return (0);
 }

@@ -13,5 +13,6 @@ int main(void)
 
 	arrSize = sizeof(msg) / sizeof(msg[1]);
 	write(1, msg, arrSize);
+	write(2, "\n", 1);
 	return (1);
 }

@@ -7,33 +7,25 @@
  */
 int main(void)
 {
-	int a = 0;
-	int total;
-	int b, c;
+	unsigned long int a, b, sum;
+	int i;
 
-	for (a = 0; a < 1024;)
+	a = 0;
+	b = 0;
+	sum = 0;
+
+	for (i = 0; i < 1024; ++i)
 	{
-		b = a % 3;
-		if (b != 0)
+		if ((i % 3) == 0)
 		{
-			c = a % 3;
+			a = a + i;
 		}
-
-		if (b == 0)
+		else if ((i % 5) == 0)
 		{
-			total += 1;
-			++a;
-		}
-		else if (c == 0)
-		{
-			total += 1;
-			++a;
-		}
-		else
-		{
-			++a;
+			b = b + i;
 		}
 	}
-	printf("%d", total);
+	sum = a + b;
+	printf("%lu\n", sum);
 	return (0);
 }

@@ -11,7 +11,7 @@ int main(void)
 	int total;
 	int b, c;
 
-	for (a = 0;a < 1024;)
+	for (a = 0; a < 1024;)
 	{
 		b = a % 3;
 		if (b != 0)
@@ -35,4 +35,5 @@ int main(void)
 		}
 	}
 	printf("%d", total);
+	return (0);
 }

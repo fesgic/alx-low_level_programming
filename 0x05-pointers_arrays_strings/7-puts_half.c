@@ -1,5 +1,8 @@
 #include "main.h"
-#include <stdio.h>
+
+/**
+ * puts_half - print second half of string
+ * @str: pointer to string to be checked
 void puts_half(char *str)
 {
 	int i = 0;
@@ -27,5 +30,6 @@ void puts_half(char *str)
 			n++;
 		}
 	}
+	_putchar('\n');
 
 }

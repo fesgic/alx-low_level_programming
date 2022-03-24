@@ -14,10 +14,6 @@ char *cap_string(char *a)
 
 	while (*(a + i) != '\0')
 	{
-		if (*(a + i) >= 97 && *(a + i) <= 122)
-		{
-			a[i] -= 32;
-		}
 		for (j = 0; j < 13; j++)
 		{
 			if (*(a + i) == d[j])

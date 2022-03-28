@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stddef.h>
 
 /**
  * _strstr - locate a substring
@@ -22,5 +23,5 @@ char *_strstr(char *haystack, char *needle)
 		if (!needle[j])
 			return (&haystack[i]);
 	}
-	return (NULL)
+	return (NULL);
 }

@@ -9,3 +9,9 @@
 - if y < 0, return -1
 5. Write a function that returns the natural square root of a number(similar to sqrt)
 - if n doesn't have a natural sqrtm return -1
+6. Write a function that returns 1 if the integer is a prime number, otherwise return 0
+7. Write a function that returns 1 if a string is a palindrome and o if not
+- an empty string is a palindrome
+8. Write a function that compares 2 strings and returns 1 if the strings can be considered identical, else return 0
+- s2 can contain special character *
+- The special character * can replace any string (including an empty string)

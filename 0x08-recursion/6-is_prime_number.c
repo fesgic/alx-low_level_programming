@@ -14,8 +14,9 @@ int _divide(int a, int b)
 		return (0);
 	}
 	if (b == a / 2)
-	       return (1);	
-	
+	{
+		return (1);
+	}
 	return (_divide(a, b + 1));
 }
 
@@ -29,7 +30,7 @@ int is_prime_number(int n)
 {
 	int b = 2;
 
-	if (n <=1)
+	if (n <= 1)
 	{
 		return (0);
 	}

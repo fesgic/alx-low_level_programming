@@ -14,15 +14,11 @@
 int main(int argc, char **argv)
 {
 	int sum, i;
-	int b = 0;
+	int b;
 
 	sum = 0;
 
 	/* check if no arguments were passed */
-	if (argc == 1)
-	{
-		printf("0\n");
-	}
 	for (i = 1; i < argc; i++)
 	{
 		/* check if any character passed to arguments is not a number */
@@ -34,10 +30,20 @@ int main(int argc, char **argv)
 				return (1);
 			}
 		}
-		sum += atoi(*(argv + i));
 	}
 
-	printf("%d\n", sum);
+	for (i = 1; i < argc; i++)
+	{
+		sum += atoi(argv[i]);
+	}
+	if (argc == 1)
+	{
+		printf("0\n");
+	}
+	else
+	{
+		printf("%d\n", sum);
+	}
 
 	return (0);
 }

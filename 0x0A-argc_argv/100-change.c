@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	{
 		cents = atoi(*(argv + 1));
 		total = _check_coins(cents, count);
-		printf("%d\n", total);
+		printf("%d", total);
 	}
 
 	return (0);

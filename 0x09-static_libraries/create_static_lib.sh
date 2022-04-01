@@ -1,3 +1,3 @@
-gcc -Wall -Wextra -Werror -pendatic -c *.c
+gcc *.c
 ar rc liball.c *.o
 ranlib liball.a

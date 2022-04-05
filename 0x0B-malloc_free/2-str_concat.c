@@ -19,32 +19,19 @@ char *_concatenate(char *s1, char *s2, int i,
 		int j, int track, int k, char conc[])
 {
 	int a = 0;
+
 	/* concatenate the string */
-	for (i = 0; *(s1 + i) != '\0' && s1 != NULL; i++)
+	for (i = 0; *(s1 + i) != '\0'; i++)
 	{
 		conc[i] = s1[i];
 	}
-	if (s1 == NULL)
-	{
-		k = 0;
-	}
-	else
-	{
-	       k = i++;
-	}
-	for (j = k; j < track && s2 != NULL; j++)
+	k = i++;
+	for (j = k; j < track; j++)
 	{
 		conc[j] = s2[a];
 		a++;
 	}
-	if (s2 == NULL)
-	{
-		conc[i++] = '\0';
-	}
-	else
-	{
-		conc[j++] = '\0';
-	}
+	conc[j++] = '\0';
 
 	return (conc);
 }
@@ -66,24 +53,24 @@ char *str_concat(char *s1, char *s2)
 
 	/* get length of s1 */
 	/* also track length of the 2 strings */
-	while (*(s1 + i) != '\0' && s1 != NULL)
+	if (s1 == NULL)
+	{
+		s1 = "";
+	}
+	while (*(s1 + i) != '\0')
 	{
 		i++;
 		track++;
 	}
-	if (s1 == NULL)
-	{
-		track = track + 0;
-	}
 	/* track length of the 2 strings */
-	while (*(s2 + j) != '\0' && s2 != NULL)
+	if (s2 == NULL)
+	{
+		s2 = "";
+	}
+	while (*(s2 + j) != '\0')
 	{
 		j++;
 		track++;
-	}
-	if (s2 == NULL)
-	{
-		track = track + 0;
 	}
 
 	/* assign memory */

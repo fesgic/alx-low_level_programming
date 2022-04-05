@@ -19,13 +19,20 @@ char *_concatenate(char *s1, char *s2, int i,
 		int j, int track, int k, char conc[])
 {
 	/* concatenate the string */
-	for (i = 0; *(s1 + i) != '\0'; i++)
+	for (i = 0; *(s1 + i) != '\0' && s1 != NULL; i++)
 	{
 		conc[i] = s1[i];
 	}
-	k = i++;
+	if (s1 == NULL)
+	{
+		k = 0;
+	}
+	else
+	{
+	       k = i++;
+	}
 	i = 0;
-	for (j = k; j < track; j++)
+	for (j = k; j < track && s2 != NULL; j++)
 	{
 		conc[j] = s2[i];
 		i++;

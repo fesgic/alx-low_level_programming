@@ -18,6 +18,7 @@ char *_concatenate(char *s1, char *s2, int i,
 char *_concatenate(char *s1, char *s2, int i,
 		int j, int track, int k, char conc[])
 {
+	int a = 0;
 	/* concatenate the string */
 	for (i = 0; *(s1 + i) != '\0' && s1 != NULL; i++)
 	{
@@ -31,13 +32,19 @@ char *_concatenate(char *s1, char *s2, int i,
 	{
 	       k = i++;
 	}
-	i = 0;
 	for (j = k; j < track && s2 != NULL; j++)
 	{
-		conc[j] = s2[i];
-		i++;
+		conc[j] = s2[a];
+		a++;
 	}
-	conc[j++] = '\0';
+	if (s2 == NULL)
+	{
+		conc[i++] = '\0';
+	}
+	else
+	{
+		conc[j++] = '\0';
+	}
 
 	return (conc);
 }

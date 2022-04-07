@@ -42,7 +42,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	new = p;
 	for (index = 0; index < old_size && index < new_size; index++)
-		new[index] = *(copy + index);
+		new[index] = *copy++;
 	free(ptr);
 	return (p);
 }

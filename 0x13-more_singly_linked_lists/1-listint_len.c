@@ -8,20 +8,12 @@
  */
 size_t listint_len(const listint_t *h)
 {
-	listint_t *head;
 	size_t i = 0;
 
-	if (h == NULL)
-		return (0);
-	head = malloc(sizeof(listint_t));
-	if (head == NULL)
-		EXIT_FAILURE;
-	*head = *h;
-	while (head->next != NULL)
+	while (h != NULL)
 	{
 		i++;
-		head = h->next;
+		h = h->next;
 	}
-	i++;
 	return (i);
 }

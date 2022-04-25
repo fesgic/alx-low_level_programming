@@ -9,27 +9,12 @@
 size_t print_listint(const listint_t *h)
 {
 	size_t i = 0;
-	listint_t *head;
 
-	head = malloc(sizeof(listint_t));
-	if (head == NULL)
-		EXIT_FAILURE;
-	if (h == NULL)
+	while (h != NULL)
 	{
-		free(head);
-		return (0);
-	}
-	else
-	{
-		*head = *h;
-		while (head->next != NULL)
-		{
-			printf("%d\n", head->n);
-			i++;
-			head = h->next;
-		}
-		printf("%d\n", head->n);
+		printf("%d\n", h->n);
 		i++;
+		h = h->next;
 	}
 	return (i);
 }

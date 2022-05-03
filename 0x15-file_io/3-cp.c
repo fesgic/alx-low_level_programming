@@ -60,6 +60,11 @@ int _read_copy(const char *file1, const char *file2)
 		dprintf(2, "Error: Can't write to %s\n", file2);
 		return (n);
 	}
+	else if (n == 98)
+	{
+		dprintf(2, "Error: Can't read from file %s\n", file1);
+		return (98);
+	}
 	cl_f = close(fd_f);
 	if (cl_f == -1)
 	{
@@ -73,7 +78,6 @@ int _read_copy(const char *file1, const char *file2)
 		return (100);
 	}
 	return (n);
-
 }
 
 /**
@@ -86,7 +90,7 @@ int _read_copy(const char *file1, const char *file2)
 int _read_now(int fd_f, int fd_t)
 {
 	char *buf;
-	ssize_t f_Rd = 1024, f_Wr;
+	ssize_t f_Rd = 1024;
 
 	buf = malloc(1024 * sizeof(char));
 	if (buf == NULL)
@@ -96,6 +100,8 @@ int _read_now(int fd_f, int fd_t)
 	while (f_Rd == 1024)
 	{
 		f_Rd = read(fd_f, buf, 1024);
+		if (f_Rd == -1)
+			return (98);
 		f_Wr = write(fd_t, buf, f_Rd);
 		if (f_Wr == -1)
 			return (99);

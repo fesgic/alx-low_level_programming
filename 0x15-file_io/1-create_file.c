@@ -1,68 +1,44 @@
 #include "main.h"
 
-
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
 /**
- * free_space - free memory
- * @fd: file descriptor
- * @space: memory
+ * _strlen - get length of string
+ * @string: string
  *
+ * Return: length
  */
-void free_space(int fd, int *space)
+ssize_t _strlen(char *string)
 {
-	free(space);
-	close(fd);
+	ssize_t i = 0;
+
+	while (string[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
+
 /**
- * create_file - create a file
- * @filename: file to create
- * @text_content: text to write to file
+ * create_file - create file
+ * @filename: name to create
+ * @text_content: contents to write
  *
  * Return: success/failure code
  */
 int create_file(const char *filename, char *text_content)
 {
-	int fd, exist, count = 0, *text;
+	int fd;
+	ssize_t result = 0;
 
-	while (text_content[count] != '\0')
-		count++;
-	count++;
 	if (filename == NULL)
 		return (-1);
-	text = malloc(count * sizeof(char));
-	if (text == NULL)
+
+	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	if (fd < 0)
 		return (-1);
-	exist = access(filename, F_OK);
-	if (exist == 0)
-	{
-		fd = open(filename, O_TRUNC | O_WRONLY);
-		if (fd < 0)
-		{
-			free(text);
-			return (-1);
-		}
-	}
-	else
-	{
-		fd = open(filename, O_CREAT | O_WRONLY, 0600);
-		if (fd < 0)
-		{
-			free(text);
-			return (-1);
-		}
-	}
 	if (text_content == NULL)
-	{
-		free_space(fd, text);
-	}
-	else
-	{
-		write(fd, text_content, count);
-		free_space(fd, text);
-	}
-	return (0);
+		return (-1);
+	result = write(fd, text_content, _strlen(text_content));
+	if (result < 0)
+		return (-1);
+	return (1);
 }

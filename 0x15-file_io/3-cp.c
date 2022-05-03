@@ -90,7 +90,7 @@ int _read_copy(const char *file1, const char *file2)
 int _read_now(int fd_f, int fd_t)
 {
 	char *buf;
-	ssize_t f_Rd = 1024;
+	ssize_t f_Rd = 1024, f_Wr;
 
 	buf = malloc(1024 * sizeof(char));
 	if (buf == NULL)

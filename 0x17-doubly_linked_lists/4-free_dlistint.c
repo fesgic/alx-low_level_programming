@@ -6,11 +6,9 @@
  */
 void free_dlistint(dlistint_t *head)
 {
-	dlistint_t *temp = malloc(sizeof(dlistint_t));
+	dlistint_t *temp;
 
-	if (temp == NULL)
-		exit(1);
-	while (head != NULL)
+	while (head)
 	{
 		temp = head;
 		head = head->next;

@@ -9,20 +9,18 @@
  */
 dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 {
-	unsigned int track = 0;
-	dlistint_t *temp = malloc(sizeof(dlistint_t));
-
-	if (temp == NULL)
-		exit(1);
-	temp = head;
-	if (temp == NULL)
+	/* declarations */
+	unsigned int i = 0;
+	/* check for NULL */
+	if (!head)
 		return (NULL);
-	while (temp != NULL && index > 0 && track <= index)
+	/* move through list to index, or bust */
+	for (i = 0; i < index; i++)
 	{
-		if (track == index)
-			return (temp);
-		temp = temp->next;
-		track++;
+		if (head->next)
+		head = head->next;
+		else
+			return (NULL);
 	}
-	return (NULL);
+	return (head);
 }

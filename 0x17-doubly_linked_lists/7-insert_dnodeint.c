@@ -10,37 +10,40 @@
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	unsigned int track = 0;
-	dlistint_t *temp = malloc(sizeof(dlistint_t));
-	dlistint_t *new;
+	/* declarations */
+	dlistint_t *location;
+	dlistint_t *new = malloc(sizeof(dlistint_t));
 
-	if (temp == NULL)
-		exit(1);
-	if (*h == NULL)
+	/* check for NULL */
+	if (!h || !new)
+		return (new ? free(new), NULL : NULL);
+	/* assign some things to new */
+	location = *h;
+	new->n = n;
+	/* if index is 0 */
+	if (!idx)
 	{
-		free(temp);
-		return (NULL);
-	}
-	temp = *h;
-	while (temp != NULL && idx > 0 && track < (idx - 1))
-	{
-		temp = temp->next;
-		track++;
-	}
-	if (track == idx - 1)
-	{
-		new = malloc(sizeof(dlistint_t));
-		if (new == NULL)
+		new->prev = NULL;
+		new->next = location ? location : NULL;
+		if (location)
 		{
-			free(temp);
-			return (NULL);
+			location->prev = new;
 		}
-		new->n = n;
-		new->next = temp->next;
-		new->prev = (temp->next)->prev;
-		(temp->next)->prev = new;
-		temp->next = new;
-		return (*h);
+		return (*h = new);
 	}
-	return (NULL);
+	/* otherwise, move to place before index and install new node */
+	for (; location; location = location->next, idx--)
+	{
+		if (idx - 1 == 0)
+		{
+			new->prev = location;
+			new->next = location->next;
+			if (new->next)
+				new->next->prev = new;
+			location->next = new;
+			return (new);
+		}
+	}
+	/* if all else fails, free new & return NULL */
+	return (free(new), NULL);
 }

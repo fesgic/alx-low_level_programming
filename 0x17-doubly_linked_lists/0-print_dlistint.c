@@ -14,6 +14,8 @@ size_t print_dlistint(const dlistint_t *h)
 	if (head == NULL)
 		exit(0);
 	*head = *h;
+	if (head == NULL)
+		return (count);
 	while (head->prev != NULL)
 		head = head->prev;
 	while (head->next != NULL)

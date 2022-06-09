@@ -9,33 +9,32 @@
  */
 dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 {
-	dlistint_t *temp, *track;
+	/*declarations */
+	dlistint_t *new = malloc(sizeof(dlistint_t));
+	dlistint_t *location;
 
-	if (*head == NULL)
+	/* check for null && malloc fail, free new if it exists, return NULL */
+	if (!head || !new)
+		return (new ? free(new), NULL : NULL);
+	/* assign some things to new */
+	new->n = n;
+	new->next = NULL;
+	/* if there are no other nodes make new the first and last */
+	if (!*head)
 	{
-		*head = malloc(sizeof(dlistint_t));
-		if (*head == NULL)
-			exit(1);
-		(*head)->next = NULL;
-		(*head)->prev = NULL;
-		(*head)->n = n;
-		return (*head);
+		new->prev = NULL;
+		*head = new;
 	}
-	track = malloc(sizeof(dlistint_t));
-	if (track == NULL)
-		exit(1);
-	temp = malloc(sizeof(dlistint_t));
-	if (temp == NULL)
+	/* otherwise, find the end and install new */
+	else
 	{
-		free(track);
-		exit(1);
+		location = *head;
+		while (location->next)
+		{
+			location = location->next;
+		}
+		location->next = new;
+		new->prev = location;
 	}
-	track = *head;
-	while (track->next != NULL)
-		track = track->next;
-	track->next = temp;
-	temp->prev = track;
-	temp->next = NULL;
-	temp->n = n;
-	return (*head);
+	return (new);
 }

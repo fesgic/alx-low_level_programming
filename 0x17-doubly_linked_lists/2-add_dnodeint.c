@@ -9,29 +9,27 @@
  */
 dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 {
-	dlistint_t *temp = malloc(sizeof(dlistint_t));
+	/* declarations */
+	dlistint_t *new = malloc(sizeof(dlistint_t));
 
-	if (temp == NULL)
-		exit(1);
-	if (*head == NULL)
+	/* check for null && malloc fail, free new if it exists, return null */
+	if (!head || !new)
+		return (new ? free(new), NULL : NULL);
+	/* assign some things to new node */
+	new->n = n;
+	new->prev = NULL;
+	/* if no other nodes, make this one the ending node as well */
+	if (!*head)
 	{
-		(*head) = malloc(sizeof(dlistint_t));
-		if (*head == NULL)
-		{
-			free(temp);
-			exit(1);
-		}
-		(*head)->n = n;
-		(*head)->prev = NULL;
-		(*head)->next = NULL;
-		free(temp);
-		return (*head);
+		*head = new;
+		new->next = NULL;
 	}
-	temp->next = (*head)->next;
-	temp->prev = *head;
-	temp->n = (*head)->n;
-	(*head)->prev = NULL;
-	(*head)->next = temp;
-	(*head)->n = n;
-	return (*head);
+	/* otherwise, fit it in nicely */
+	else
+	{
+		new->next = *head;
+		(*head)->prev = new;
+		*head = new;
+	}
+	return (new);
 }

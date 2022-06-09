@@ -12,7 +12,12 @@ size_t print_dlistint(const dlistint_t *h)
 	dlistint_t *head = malloc(sizeof(dlistint_t));
 
 	if (head == NULL)
-		exit(0);
+		exit(1);
+	if (h == NULL)
+	{
+		free(head);
+		return (count);
+	}
 	*head = *h;
 	if (head == NULL)
 		return (count);

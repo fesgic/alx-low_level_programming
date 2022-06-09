@@ -9,36 +9,38 @@
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	unsigned int track = 0;
-	dlistint_t *temp = malloc(sizeof(dlistint_t));
+	/* declarations */
+	dlistint_t *location, *temp;
 
-	if (temp == NULL)
-		return (-1);
-	if (*head == NULL)
-		return (1);
-	temp = *head;
-	if ((*head)->next == NULL && (*head)->prev == NULL)
+	if (head)
 	{
-		(*head) = NULL;
-		return (1);
-	}
-	if (index == 0 && *head != NULL)
-	{
-		free(temp);
-		(*head) = (*head)->next;
-		(*head)->prev = NULL;
-		return (1);
-	}
-	while (temp != NULL && track < index - 1)
-	{
-		temp = temp->next;
-		track++;
-	}
-	if (track == index - 1 && *head != NULL)
-	{
-		((temp->next)->next)->prev = (temp->next)->prev;
-		temp->next = (temp->next)->next;
-		return (1);
+	/* set location to head, check for index == 0 */
+		location = *head;
+		if (index < 1)
+		{
+			if (!location)
+				return (-1);
+			*head = location->next;
+			if (*head)
+				(*head)->prev = NULL;
+			free(location);
+			return (1);
+		}
+	/* look for the index, delete the right node, or fail if !index node */
+		for (; location; location = location->next, index--)
+		{
+			if (index - 1 == 0)
+			{
+				temp = location->next;
+				if (!temp)
+					break;
+				location->next = temp->next;
+				if (temp->next)
+					temp->next->prev = location;
+				free(temp);
+				return (1);
+			}
+		}
 	}
 	return (-1);
 }

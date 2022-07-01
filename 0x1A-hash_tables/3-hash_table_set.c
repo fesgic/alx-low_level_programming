@@ -32,9 +32,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	else
 	{
 		hold = (ht->array)[index];
-		while (((ht->array)[index]->next) != NULL)
+		while (hold->next != NULL)
 		{
-			hold = (ht->array)[index]->next;
+			hold = hold->next;
 		}
 		hold->next = temp;
 	}
